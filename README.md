@@ -36,6 +36,16 @@ Jimp.read("lenna.png").then(function (lenna) {
 
 Also available to use in web browsers and Electron applications. See [`browser/README.md`](https://github.com/oliver-moran/jimp/blob/master/browser/README.md).
 
+## Original Work ##
+This is a fork of [oliver-moran/jimp](https://github.com/oliver-moran/jimp).
+
+Added:
+- `image.print` takes an optional `color`, and fills each character with that color
+
+Modified:
+- `image.print` can take the optional maxWidth argument, but now that can be replaced with an object of multiple options.
+  `maxWidth` and `color` are valid options.
+
 ## Basic usage ##
 
 The static `Jimp.read` method takes the path to a PNG, JPEG or BMP file and (optionally) a Node-style callback and returns a Promise:
@@ -108,7 +118,7 @@ image.normalize();                // normalize the channels in an image
 image.fade( f );                  // an alternative to opacity, fades the image by a factor 0 - 1. 0 will haven no effect. 1 will turn the image
 image.opacity( f );               // multiply the alpha channel by each pixel by the factor f, 0 - 1
 image.opaque();                   // set the alpha channel on every pixel to fully opaque
-image.background( hex );          // set the default new pixel colour (e.g. 0xFFFFFFFF or 0x00000000) for by some operations (e.g. image.contain and 
+image.background( hex );          // set the default new pixel colour (e.g. 0xFFFFFFFF or 0x00000000) for by some operations (e.g. image.contain and
 
 /* Blurs */
 image.gaussian( r );              // Gaussian blur the image by r pixels (VERY slow)

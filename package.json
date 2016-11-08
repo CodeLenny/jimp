@@ -1,6 +1,6 @@
 {
-  "name": "jimp",
-  "version": "0.2.27",
+  "name": "@codelenny/jimp",
+  "version": "0.0.0",
   "description": "An image processing library written entirely in JavaScript (i.e. zero external or native dependencies).",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "scale",
     "crop"
   ],
-  "author": "Oliver Moran <oliver.moran@gmail.com>",
+  "author": "Ryan Leonard (http://ryanleonard.us)",
   "license": "MIT",
   "dependencies": {
     "bignumber.js": "^2.1.0",
@@ -52,10 +52,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oliver-moran/jimp.git"
+    "url": "https://github.com/CodeLenny/jimp.git"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/",
+    "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/oliver-moran/jimp/issues"
+    "url": "https://github.com/CodeLenny/jimp/issues"
   },
   "tonicExampleFilename": "example.js",
   "browser": "browser/lib/jimp.js"
