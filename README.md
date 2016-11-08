@@ -4,7 +4,7 @@ The "JavaScript Image Manipulation Program" :-)
 
 An image processing library for Node written entirely in JavaScript, with zero external or native dependencies.
 
-Installation: `npm install --save jimp`
+Installation: `npm install --save @codelenny/jimp`
 
 Example usage:
 
