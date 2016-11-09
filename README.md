@@ -9,7 +9,7 @@ Installation: `npm install --save @codelenny/jimp`
 Example usage:
 
 ```js
-var Jimp = require("jimp");
+var Jimp = require("@codelenny/jimp");
 
 // open a file called "lenna.png"
 Jimp.read("lenna.png", function (err, lenna) {
