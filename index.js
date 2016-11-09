@@ -14,7 +14,7 @@ var EXIFParser = require("exif-parser");
 var ImagePHash = require("./phash.js");
 var BigNumber = require('bignumber.js');
 var URLRegEx = require("url-regex");
-var BMFont = require("load-bmfont");
+var BMFont = require("@codelenny/load-bmfont");
 var Path = require("path");
 
 if (process.env.ENVIRONMENT !== "BROWSER") {
