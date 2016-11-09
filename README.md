@@ -43,6 +43,8 @@ Added:
 - `image.print` takes an optional `color`, and fills each character with that color
 
 Modified:
+- Switched to [@codelenny/load-bmfont](https://github.com/CodeLenny/load-bmfont), as the original was out of date, and
+  had poor error handling.
 - `image.print` can take the optional maxWidth argument, but now that can be replaced with an object of multiple options.
   `maxWidth` and `color` are valid options.
 
