@@ -40,7 +40,7 @@ Also available to use in web browsers and Electron applications. See [`browser/R
 This is a fork of [oliver-moran/jimp](https://github.com/oliver-moran/jimp).
 
 Added:
-- `image.print` takes an optional `color`, and fills each character with that color (see @CodeLenny/jimp#1, `iss1-add-text-color`)
+- `image.print` takes an optional `color`, and fills each character with that color (see CodeLenny/jimp#1, `iss1-add-text-color`)
 - `.editorconfig` file prevents editors from accidentally changing files to meet different coding styles.
 
 Modified:
