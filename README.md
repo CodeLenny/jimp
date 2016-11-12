@@ -4,12 +4,12 @@ The "JavaScript Image Manipulation Program" :-)
 
 An image processing library for Node written entirely in JavaScript, with zero external or native dependencies.
 
-Installation: `npm install --save jimp`
+Installation: `npm install --save @codelenny/jimp`
 
 Example usage:
 
 ```js
-var Jimp = require("jimp");
+var Jimp = require("@codelenny/jimp");
 
 // open a file called "lenna.png"
 Jimp.read("lenna.png", function (err, lenna) {
@@ -35,6 +35,19 @@ Jimp.read("lenna.png").then(function (lenna) {
 ```
 
 Also available to use in web browsers and Electron applications. See [`browser/README.md`](https://github.com/oliver-moran/jimp/blob/master/browser/README.md).
+
+## Original Work ##
+This is a fork of [oliver-moran/jimp](https://github.com/oliver-moran/jimp).
+
+Added:
+- `image.print` takes an optional `color`, and fills each character with that color (see CodeLenny/jimp#1, `iss1-add-text-color`)
+- `.editorconfig` file prevents editors from accidentally changing files to meet different coding styles.
+
+Modified:
+- Switched to [@codelenny/load-bmfont](https://github.com/CodeLenny/load-bmfont), as the original was out of date, and
+  had poor error handling.  (See CodeLenny/jimp#3, `iss3-switch-loadbm`)
+- `image.print` can take the optional maxWidth argument, but now that can be replaced with an object of multiple options.
+  `maxWidth` and `color` are valid options.  (See CodeLenny/jimp#1, `iss1-add-text-color`)
 
 ## Basic usage ##
 
@@ -108,7 +121,7 @@ image.normalize();                // normalize the channels in an image
 image.fade( f );                  // an alternative to opacity, fades the image by a factor 0 - 1. 0 will haven no effect. 1 will turn the image
 image.opacity( f );               // multiply the alpha channel by each pixel by the factor f, 0 - 1
 image.opaque();                   // set the alpha channel on every pixel to fully opaque
-image.background( hex );          // set the default new pixel colour (e.g. 0xFFFFFFFF or 0x00000000) for by some operations (e.g. image.contain and 
+image.background( hex );          // set the default new pixel colour (e.g. 0xFFFFFFFF or 0x00000000) for by some operations (e.g. image.contain and
 
 /* Blurs */
 image.gaussian( r );              // Gaussian blur the image by r pixels (VERY slow)
