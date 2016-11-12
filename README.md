@@ -45,9 +45,9 @@ Added:
 
 Modified:
 - Switched to [@codelenny/load-bmfont](https://github.com/CodeLenny/load-bmfont), as the original was out of date, and
-  had poor error handling.  (See @CodeLenny/jimp#3, `iss3-switch-loadbm`)
+  had poor error handling.  (See CodeLenny/jimp#3, `iss3-switch-loadbm`)
 - `image.print` can take the optional maxWidth argument, but now that can be replaced with an object of multiple options.
-  `maxWidth` and `color` are valid options.  (See @CodeLenny/jimp#1, `iss1-add-text-color`)
+  `maxWidth` and `color` are valid options.  (See CodeLenny/jimp#1, `iss1-add-text-color`)
 
 ## Basic usage ##
 
