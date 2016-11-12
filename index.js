@@ -2233,7 +2233,8 @@ function loadPages(dir, pages) {
 
 /**
  * Draws a text on a image on a given boundary
- * @param font a bitmap font loaded from `Jimp.loadFont` command
+ * @param fonts a bitmap font loaded from `Jimp.loadFont` command, or an array of multiple fonts, which provides fallback
+     fonts if a character isn't found in the first.
  * @param x the x position to start drawing the text
  * @param y the y position to start drawing the text
  * @param text the text to draw
@@ -2243,7 +2244,16 @@ function loadPages(dir, pages) {
  * @param (optional) cb a function to call when the text is written
  * @returns this for chaining of methods
  */
-Jimp.prototype.print = function (font, x, y, text, opts, cb) {
+Jimp.prototype.print = function (fonts, x, y, text, opts, cb) {
+    var font = null;
+    if (Array.isArray(fonts)) {
+        if (fonts.length < 1)
+            return throwError.call(this, "at least 1 font required, 0 provided", cb);
+        font = fonts[0];
+    }
+    else {
+        font = fonts;
+    }
     if ("function" == typeof opts && "undefined" == typeof cb) {
         cb = opts;
         opts = {};
@@ -2262,7 +2272,7 @@ Jimp.prototype.print = function (font, x, y, text, opts, cb) {
 
 
     if ("object" != typeof font)
-        return throwError.call(this, "font must be a Jimp loadFont", cb);
+        return throwError.call(this, "fonts must be a Jimp loadFont, or an array of Jimp loadFont", cb);
     if ("number" != typeof x || "number" != typeof y || "number" != typeof maxWidth)
         return throwError.call(this, "x, y and maxWidth must be numbers", cb);
     if ("string" != typeof text)
@@ -2279,21 +2289,30 @@ Jimp.prototype.print = function (font, x, y, text, opts, cb) {
         var testLine = line + words[n] + ' ';
         var testWidth = measureText(font, testLine);
         if (testWidth > maxWidth && n > 0) {
-            that = that.print(font, x, y, line, {color: color});
+            that = that.print(fonts, x, y, line, {color: color});
             line = words[n] + ' ';
             y += font.common.lineHeight;
         } else {
             line = testLine;
         }
     }
-    printText.call(this, font, x, y, line, color);
+    printText.call(this, fonts, x, y, line, color);
 
     if (isNodePattern(cb)) return cb.call(this, null, that);
     else return that;
 };
 
-function printText(font, x, y, text, color) {
+function printText(fonts, x, y, text, color) {
     for (var i = 0; i < text.length; i++) {
+      var font = fonts;
+      if (Array.isArray(fonts)) {
+          for (var f = 0; f < fonts.length; f++) {
+              if (fonts[f].chars[text[i]]) {
+                  font = fonts[f];
+                  break;
+              }
+          }
+      }
       if (font.chars[text[i]]) {
         drawCharacter(this, font, x, y, font.chars[text[i]], color);
         x += (font.kernings[text[i]] && font.kernings[text[i]][text[i+1]] ? font.kernings[text[i]][text[i+1]] : 0) + (font.chars[text[i]].xadvance || 0);
