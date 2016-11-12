@@ -41,13 +41,15 @@ This is a fork of [oliver-moran/jimp](https://github.com/oliver-moran/jimp).
 
 Added:
 - `image.print` takes an optional `color`, and fills each character with that color (see CodeLenny/jimp#1, `iss1-add-text-color`)
-- `.editorconfig` file prevents editors from accidentally changing files to meet different coding styles.
+- `.editorconfig` file prevents editors from accidentally changing files to meet different coding styles.  (See CodeLenny/jimp#6, `iss6-editorconfig`)
 
 Modified:
 - Switched to [@codelenny/load-bmfont](https://github.com/CodeLenny/load-bmfont), as the original was out of date, and
   had poor error handling.  (See CodeLenny/jimp#3, `iss3-switch-loadbm`)
 - `image.print` can take the optional maxWidth argument, but now that can be replaced with an object of multiple options.
   `maxWidth` and `color` are valid options.  (See CodeLenny/jimp#1, `iss1-add-text-color`)
+- `image.print` optionally takes an array of fonts, using subsequent fonts as fallbacks if a character isn't included
+  in an earlier font.  (See CodeLenny/jimp#7, `iss7-multiple-fonts`)
 
 ## Basic usage ##
 
