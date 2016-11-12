@@ -18,6 +18,10 @@ Promise.all(promises).then(function (fonts) {
         fonts.forEach(function(font, i) {
             lenna.clone().print(font, 10, 10, "This is Lenna.", lenna.bitmap.width).write("./output/lenna-text-" + i + ".png");
         });
+        for (var i = 1; i < fonts.length; i++) {
+            lenna.clone().print([fonts[i-1], fonts[i]], 10, 10, "This is Lenna.", lenna.bitmap.width).write("./output/lenna-text-"+(i-1)+"+"+i+".png");
+        }
+        lenna.clone().print(fonts, 10, 10, "This is Lenna.", lenna.bitmap.width).write("./output/lenna-text-all.png");
     });
 }).catch(function (err) {
     console.log(err);
