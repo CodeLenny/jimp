@@ -2307,7 +2307,9 @@ function drawCharacter(image, font, x, y, char, color) {
         if (color && "number" == typeof color) {
           imageChar.scan(0, 0, char.width, char.height, function(x, y, idx) {
             if(this.bitmap.data[idx + 3] == 0) { return; }
+            var transparency = this.bitmap.data[idx + 3];
             this.bitmap.data.writeUInt32BE(color, idx, true);
+            this.bitmap.data[idx + 3] = transparency;
           });
         }
         return image.composite(imageChar, x + char.xoffset, y + char.yoffset);
