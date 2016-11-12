@@ -2276,7 +2276,7 @@ Jimp.prototype.print = function (fonts, x, y, text, maxWidth, cb) {
 
     for (var n = 0; n < words.length; n++) {
         var testLine = line + words[n] + ' ';
-        var testWidth = measureText(font, testLine);
+        var testWidth = measureText(fonts, testLine);
         if (testWidth > maxWidth && n > 0) {
             that = that.print(fonts, x, y, line);
             line = words[n] + ' ';
@@ -2295,6 +2295,7 @@ function printText(fonts, x, y, text) {
     for (var i = 0; i < text.length; i++) {
       var font = fonts;
       if (Array.isArray(fonts)) {
+          font = fonts[0];
           for (var f = 0; f < fonts.length; f++) {
               if (fonts[f].chars[text[i]]) {
                   font = fonts[f];
@@ -2317,9 +2318,19 @@ function drawCharacter(image, font, x, y, char) {
     return image;
 };
 
-function measureText(font, text) {
+function measureText(fonts, text) {
   var x = 0;
   for (var i = 0; i < text.length; i++) {
+      var font = fonts;
+      if (Array.isArray(fonts)) {
+          font = fonts[0];
+          for (var f = 0; f < fonts.length; f++) {
+              if (fonts[f].chars[text[i]]) {
+                  font = fonts[f];
+                  break;
+              }
+          }
+      }
       if (font.chars[text[i]]) {
           x += font.chars[text[i]].xoffset
             + (font.kernings[text[i]] && font.kernings[text[i]][text[i+1]] ? font.kernings[text[i]][text[i+1]] : 0)
